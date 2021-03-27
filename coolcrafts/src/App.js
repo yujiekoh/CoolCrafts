@@ -1,8 +1,11 @@
 import "./App.css";
+import "./index.css";
 import React, { useState, useEffect, useRef } from "react";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from "axios";
 import ItemListings from "./components/ItemListings";
-// import ItemData from "./data/ItemData";
+import Header from "./components/Header";
+
 
 function App() {
   const [listings, setListings] = useState([]);
@@ -10,34 +13,38 @@ function App() {
   const API_KEY = process.env.REACT_APP_API_KEY;
   const numListings = 8;
 
-  useEffect(() => {
-    const testUrl = `https://openapi.etsy.com/v2/listings/967023146?api_key=${API_KEY}`;
+  // useEffect(() => {
+  //   const testUrl = `https://openapi.etsy.com/v2/listings/967023146?api_key=${API_KEY}`;
 
-    const url = `https://openapi.etsy.com/v2/listings/active?api_key=${API_KEY}&limit=${numListings}`;
+  //   const url = `https://openapi.etsy.com/v2/listings/active?api_key=${API_KEY}&limit=${numListings}`;
 
-    axios.get(url).then((res) => {
-      console.log("App.js axios call made");
-      console.log(res.data.results);
-      setListings(res.data.results);
-    });
-  }, []);
-
-  // console.log("api key");
-
-  // const url = `https://openapi.etsy.com/v2/listings/967023146?api_key=${API_KEY}`;
-
-  // fetch(url)
-  //   .then(response => response.json())
-  //   .then(json => console.log(json));
-
-  // console.log(ItemData.results[0]);
+  //   axios.get(url).then((res) => {
+  //     console.log("App.js axios call made");
+  //     console.log(res.data.results);
+  //     setListings(res.data.results);
+  //   });
+  // }, []);
 
   return (
-    <div className="App">
-      <h1>CoolCrafts</h1>
-      {/* {listings.title} */}
-      <ItemListings key="listings" listings={listings} />
-    </div>
+    <Router>
+      <div className="app">
+        <Switch>
+          <Route path="/favourites">
+            <h1>Favourites page</h1>
+          </Route>
+          <Route path="/profile">
+            <h1>Profile page</h1>
+          </Route>
+          <Route path="/basket">
+            <h1>Basket page</h1>
+          </Route>
+          <Route path="/">
+            <Header />
+            {/* <ItemListings key="listings" listings={listings} /> */}
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

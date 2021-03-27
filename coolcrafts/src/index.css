@@ -12,6 +12,48 @@ code {
     monospace;
 }
 
+.header {
+  background-color: beige;
+  display: flex;
+  align-items: center;
+}
+
+.header-link {
+  text-decoration: none;
+}
+
+.header-title {
+  font-size: 40px;
+  font-weight: 200;
+}
+
+.header-search {
+  /* flex: 1; */
+}
+
+.header-search-bar {
+  height: 12px;
+  padding: 5px;
+}
+
+.header-search-icon {
+  background-color: blanchedalmond;
+  height: 12px;
+}
+
+.header-nav {
+  display: flex;
+  /* justify-content: space-between; */
+}
+
+.header-option {
+  padding-left: 20px;
+}
+
+.header-basket {
+  display: flex;
+}
+
 .item-listings {
   display: grid;
   grid-template-columns: auto auto auto auto;
