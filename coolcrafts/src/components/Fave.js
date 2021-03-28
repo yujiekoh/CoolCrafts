@@ -5,7 +5,7 @@ const Fave = () => {
     const [isFave, setIsFave] = useState(false);
 
     return (
-        <small className="fave">Fave</small>
+        <button className="fave">Add to Favourites</button>
     )
     
 }

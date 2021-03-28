@@ -4,8 +4,12 @@ import SearchIcon from "@material-ui/icons/Search";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
+import { useStateValue } from './StateProvider';
 
 function Header() {
+  const [{ basket }, dispatch] = useStateValue();
+  console.log(basket);
+
     return (
       <nav className="header">
         {/* app name on the left  */}
@@ -29,11 +33,11 @@ function Header() {
           <Link to="/profile" className="header-link">
             <AccountCircleIcon className="header-option" />
           </Link>
-          {/* 3rd link: cart */}
-          <Link to="/basket" className="header-link">
+          {/* 3rd link: checkout */}
+          <Link to="/checkout" className="header-link">
             <div className="header-basket header-option">
               <ShoppingBasketIcon />
-              <span>0</span>
+              <span>{basket.length}</span>
             </div>
           </Link>
         </div>
