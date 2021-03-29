@@ -8,6 +8,7 @@ import { useStateValue } from './StateProvider';
 
 const ItemCard = (props) => {
     const [listing, setListing] = useState({
+      // set height and width of <img> tag to be 170x135
         image: "",
         shopName: "test shop"
     });
@@ -16,24 +17,35 @@ const ItemCard = (props) => {
 
     useEffect(() => {
         const imageURL = `https://openapi.etsy.com/v2/listings/${props.listingID}/images?api_key=${API_KEY}`;
-        axios.get(imageURL).then(res => {
-          console.log("imageURL axios call made");
-          console.log(res.data.results[0]["url_170x135"]);
+        const shopURL = `https://openapi.etsy.com/v2/shops/listing/${props.listingID}?api_key=${API_KEY}`;
+        Promise.all([axios.get(imageURL), axios.get(shopURL)]).then(res => {
+          console.log(res[0].data.results[0]["url_170x135"]);
+          console.log(res[1].data.results[0].shop_name);
           setListing({
-            ...listing,
-            image: res.data.results[0]["url_170x135"],
+            image: res[0].data.results[0]["url_170x135"],
+            shopName: res[1].data.results[0].shop_name
           });
         })
 
-        const shopURL = `https://openapi.etsy.com/v2/shops/listing/${props.listingID}?api_key=${API_KEY}`;
-        axios.get(shopURL).then((res) => {
-          console.log("shopURL axios call made");
-          console.log(res.data.results[0].shop_name);
-          setListing({
-            ...listing,
-            shopName: res.data.results[0].shop_name,
-          });
-        });
+        // const imageURL = `https://openapi.etsy.com/v2/listings/${props.listingID}/images?api_key=${API_KEY}`;
+        // axios.get(imageURL).then(res => {
+        //   console.log("imageURL axios call made");
+        //   console.log(res.data.results[0]["url_170x135"]);
+        //   setListing(prev => ({
+        //     ...prev,
+        //     image: res.data.results[0]["url_170x135"],
+        //   }));
+        // })
+
+        // const shopURL = `https://openapi.etsy.com/v2/shops/listing/${props.listingID}?api_key=${API_KEY}`;
+        // axios.get(shopURL).then((res) => {
+        //   console.log("shopURL axios call made");
+        //   console.log(res.data.results[0].shop_name);
+        //   setListing(prev => ({
+        //     ...prev,
+        //     shopName: res.data.results[0].shop_name,
+        //   }));
+        // });
     }, [])
 
     // useEffect(() => {
@@ -59,7 +71,9 @@ const ItemCard = (props) => {
           title: props.card.title,
           shopName: listing.shopName,
           views: props.card.views,
-          price: "$" + props.card.price
+          price: parseFloat(props.card.price),
+          quantity: 1,
+          totalPrice: parseFloat(props.card.price)
         },
       });
     }

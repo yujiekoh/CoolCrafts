@@ -4,6 +4,7 @@ export const initialState = {
 
 const reducer = (state, action) => {
     console.log(action);
+    
     switch (action.type) {
         case "ADD_TO_BASKET":
             // logic for adding item to basket
@@ -25,6 +26,17 @@ const reducer = (state, action) => {
               ...state,
               basket: newBasket
             };
+        case "CHANGE_ITEM_QUANTITY":
+            let newBasketQuantity = [...state.basket];
+            const indexQuantity = newBasketQuantity.findIndex(item => item.id === action.id);
+            console.log(indexQuantity);
+            newBasketQuantity[indexQuantity].quantity = action.newQuantity;
+            newBasketQuantity[indexQuantity].totalPrice = action.newTotalPrice;
+            return {
+              ...state,
+              basket: newBasketQuantity,
+            };
+
         default:
             return state;
     }

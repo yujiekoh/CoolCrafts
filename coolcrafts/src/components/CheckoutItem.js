@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStateValue } from "./StateProvider";
 
 const CheckoutItem = (props) => {
     const [{ basket }, dispatch] = useStateValue();
+
+    // const [totalPrice, setTotalPrice] = useState({
+    //   quantity: 1,
+    //   price: props.price
+    // })
 
     const removeFromBasket = () => {
         console.log("clicked remove from basket");
@@ -12,18 +17,57 @@ const CheckoutItem = (props) => {
         })
     }
 
-    return (
-      <div className="checkout-item">
-        <img src={props.image} alt="" />
+    const handleChange = (e) => {
+      console.log("quantity changed");
+      console.log(parseInt(e.target.value));
 
-        <div className="checkout-info">
-          <h4>{props.title}</h4>
-          <h5>{props.shopName}</h5>
-          <p>Views: {props.views}</p>
-          <p>${props.price}</p>
+      dispatch({
+        type: "CHANGE_ITEM_QUANTITY",
+        id: props.id,
+        newQuantity: parseInt(e.target.value),
+        newTotalPrice: parseInt(e.target.value) * props.price
+      });
+      
+
+      // setTotalPrice({
+      //   quantity: parseInt(e.target.value),
+      //   price: parseInt(e.target.value) * props.price
+      // });
+    };
+
+    return (
+      <div>
+        <div className="checkout-item">
+          <img className="checkout-item-img" src={props.image} alt="" />
+
+          <div className="checkout-item-info">
+            <h4>{props.title}</h4>
+            <h5>{props.shopName}</h5>
+            <p>Views: {props.views}</p>
+          </div>
+
+          <div className="checkout-item-total">
+            <h4>Quantity:</h4>
+            <form action="" onChange={handleChange}>
+              <label for="quantity"></label>
+              <select name="quantity" id="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </form>
+          </div>
+
+          <div className="checkout-item-total">
+            <h3>${props.totalPrice}</h3>
+          </div>
         </div>
 
-        <button className="add-remove" onClick={removeFromBasket}>Remove from Basket</button>
+        <button className="add-remove" onClick={removeFromBasket}>
+          Remove from Basket
+        </button>
       </div>
     );
 }

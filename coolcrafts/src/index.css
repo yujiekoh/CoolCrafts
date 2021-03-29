@@ -68,6 +68,35 @@ code {
   background-color: white;
 }
 
+.checkout-item, .checkout-final {
+  display: flex;
+  margin: 10px;
+}
+
+.checkout-item-img {
+  width: 200px;
+  /* max-width: 300px; */
+}
+
+.checkout-item-info {
+  width: 400px;
+}
+
+.checkout-item-total {
+  width: 120px;
+}
+
+.proceed-to-checkout {
+  border: 5px ridge;
+  border-radius: 10px;
+  width: 400px;
+  display: block;
+}
+
+.checkout-total {
+  display: flex;
+}
+
 /* .fave {
   position: absolute;
   top: 5%;

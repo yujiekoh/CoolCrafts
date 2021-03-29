@@ -12,7 +12,7 @@ function App() {
   const [listings, setListings] = useState([]);
 
   const API_KEY = process.env.REACT_APP_API_KEY;
-  const numListings = 8;
+  const numListings = 4;
 
   useEffect(() => {
     const testUrl = `https://openapi.etsy.com/v2/listings/967023146?api_key=${API_KEY}`;
