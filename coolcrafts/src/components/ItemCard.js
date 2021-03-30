@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import ItemImage from './ItemImage';
-import ItemInfo from './ItemInfo';
-import Fave from './Fave';
-import Add from './Add';
 import { useStateValue } from './StateProvider';
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+
 
 const ItemCard = (props) => {
     const [listing, setListing] = useState({
@@ -59,10 +58,10 @@ const ItemCard = (props) => {
     //         });
     //     })
     // }, [])
-    const [{}, dispatch] = useStateValue();
+    const [{ basket }, dispatch] = useStateValue();
 
-    const addToBasket = () => {
-      console.log("clicked add to basket")
+    const addToBasket = (e) => {
+      console.log("clicked add to basket");
       dispatch({
         type: "ADD_TO_BASKET",
         item: {
@@ -73,31 +72,46 @@ const ItemCard = (props) => {
           views: props.card.views,
           price: parseFloat(props.card.price),
           quantity: 1,
-          totalPrice: parseFloat(props.card.price)
+          totalPrice: parseFloat(props.card.price),
         },
       });
     }
 
     return (
-      <div className="item-card">
-        <img src={listing.image} alt="image failed to load" />
-        <div className="item-card-info">
-          <h4>{props.card.title}</h4>
-          <h5>{listing.shopName}</h5>
-          <p>Views: {props.card.views}</p>
-          <p>
-            ${props.card.price}
-          </p>
-        </div>
+      <Card border="secondary" className="card">
+        <Card.Img variant="top" src={listing.image} />
+        <Card.Body className="card-body">
+          <Card.Title>{props.card.title}</Card.Title>
+          <Card.Subtitle>{listing.shopName}</Card.Subtitle>
+          <Card.Text>Views: {props.card.views}</Card.Text>
+          <Card.Text>${props.card.price}</Card.Text>
+        </Card.Body>
+        <Button
+          variant="primary"
+          className="add-remove"
+          disabled={basket.find(item => item.id === props.listingID) ? true : false}
+          onClick={addToBasket}
+        >
+          Add to Basket
+        </Button>
+      </Card>
 
-        <button className="fave">Add to Favourites</button>
-        <button className="add-remove" onClick={addToBasket}>Add to Basket</button>
+      // <div className="item-card">
+      //   <img src={listing.image} alt="image failed to load" />
+      //   <div className="item-card-info">
+      //     <h4>{props.card.title}</h4>
+      //     <h5>{listing.shopName}</h5>
+      //     <p>Views: {props.card.views}</p>
+      //     <p>
+      //       ${props.card.price}
+      //     </p>
+      //   </div>
 
-        {/* <ItemImage image={listing.image}/>
-        <ItemInfo info={props.card} shopName={listing.shopName} listingID={props.listingID}/> */}
-        {/* <ItemImage listingID={props.listingID} />
-        <ItemInfo info={props.card} listingID={props.listingID} /> */}
-      </div>
+      //   <button className="fave">Add to Favourites</button>
+      //   <button className="add-remove" onClick={addToBasket}>Add to Basket</button>
+
+      
+      // </div>
     );
 }
 

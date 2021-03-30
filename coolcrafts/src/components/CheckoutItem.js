@@ -4,10 +4,7 @@ import { useStateValue } from "./StateProvider";
 const CheckoutItem = (props) => {
     const [{ basket }, dispatch] = useStateValue();
 
-    // const [totalPrice, setTotalPrice] = useState({
-    //   quantity: 1,
-    //   price: props.price
-    // })
+    const [quantity, setQuantity] = useState(1);
 
     const removeFromBasket = () => {
         console.log("clicked remove from basket");
@@ -20,7 +17,7 @@ const CheckoutItem = (props) => {
     const handleChange = (e) => {
       console.log("quantity changed");
       console.log(parseInt(e.target.value));
-
+      setQuantity(e.target.value);
       dispatch({
         type: "CHANGE_ITEM_QUANTITY",
         id: props.id,
@@ -50,7 +47,7 @@ const CheckoutItem = (props) => {
             <h4>Quantity:</h4>
             <form action="" onChange={handleChange}>
               <label for="quantity"></label>
-              <select name="quantity" id="quantity">
+              <select name="quantity" className="quantity" value={quantity}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -61,7 +58,7 @@ const CheckoutItem = (props) => {
           </div>
 
           <div className="checkout-item-total">
-            <h3>${props.totalPrice}</h3>
+            <h3>${(props.totalPrice) / 100}</h3>
           </div>
         </div>
 
