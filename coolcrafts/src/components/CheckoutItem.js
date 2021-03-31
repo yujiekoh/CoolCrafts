@@ -47,18 +47,29 @@ const CheckoutItem = (props) => {
             <h4>Quantity:</h4>
             <form action="" onChange={handleChange}>
               <label for="quantity"></label>
-              <select name="quantity" className="quantity" value={quantity}>
+              <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                min="1"
+                max="100"
+                value={
+                  basket[basket.findIndex((item) => item.id === props.id)]
+                    .quantity
+                }
+              />
+              {/* <select name="quantity" className="quantity" value={quantity}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
-              </select>
+              </select> */}
             </form>
           </div>
 
           <div className="checkout-item-total">
-            <h3>${(props.totalPrice) / 100}</h3>
+            <h3>${props.totalPrice / 100}</h3>
           </div>
         </div>
 

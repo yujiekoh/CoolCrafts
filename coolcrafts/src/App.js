@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Checkout from "./components/Checkout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
+import ItemDetails from "./components/ItemDetails";
 
 function App() {
   const [listings, setListings] = useState([]);
@@ -62,7 +63,7 @@ function App() {
             <Header />
             <Checkout />
           </Route>
-          <Route path="/">
+          <Route path="/" exact>
             <Header />
             <ItemListings key="listings" listings={listings} />
             <Button
@@ -72,6 +73,10 @@ function App() {
             >
               Show More
             </Button>
+          </Route>
+          <Route path="/product/:id">
+            <Header />
+            <ItemDetails />
           </Route>
         </Switch>
       </div>

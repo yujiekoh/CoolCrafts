@@ -67,15 +67,16 @@ code {
   padding: 10px;
 }
 
-.card {
+.item-card {
   display: grid;
   position: relative;
   background-color: white;
   width: 20rem;
 }
 
-.card-body {
+.item-card-body {
   margin-top: 10px;
+  height: 250px;
 }
 
 .checkout-item, .checkout-final {
@@ -114,6 +115,32 @@ code {
 .checkout-total {
   display: flex;
 }
+
+.carousel {
+  max-height: 610px;
+  width: 570px;
+  transform: translateX(-90px);
+  margin-top: 50px;
+  border-radius: 10px;
+}
+
+.carousel-indicators,
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.carousel-img {
+  max-height: 600px;
+  width: 570px;
+  border-radius: 10px;
+}
+
+.item-details-card {
+  margin-top: 50px;
+}
+
+
 
 /* .fave {
   position: absolute;
