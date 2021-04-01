@@ -16,13 +16,6 @@ function Checkout() {
     { name: "AMEX", value: "3" },
     { name: "PayPal", value: "4" },
   ];
-
-  // if (basket.length > 0) {
-  //   const x = basket.reduce((total, item) => total.totalPrice + item.totalPrice);
-
-  //   console.log(x);
-  // }
-
   return (
     <div className="checkout">
       <img src="" alt="" />
@@ -123,35 +116,6 @@ function Checkout() {
               <Button variant="outline-primary">Proceed to Checkout</Button>
             </Card.Body>
           </Card>
-          {/* <div className="proceed-to-checkout">
-              <h4>
-                <strong>How you'll pay</strong>
-              </h4>
-              <br />
-              <input type="radio" name="payment" value="credit-card" />
-              <label for="credit-card"> Credit Card</label>
-              <br />
-              <br />
-              <input type="radio" name="payment" value="paypal" />
-              <label for="paypal"> PayPal</label>
-
-              <table>
-                <tr>
-                  <td>Item(s) total</td>
-                  <td>
-                    {basket.reduce((total, item) => (total + item.totalPrice), 0)}
-                  </td>
-                </tr>
-                <tr>
-                  <td>Delivery</td>
-                  <td>10</td>
-                </tr>
-                <tr>
-                  <td>Total</td>
-                  <td>109</td>
-                </tr>
-              </table>
-            </div> */}
         </div>
       )}
     </div>

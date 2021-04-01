@@ -3,13 +3,6 @@ import axios from "axios";
 import ItemCard from "./ItemCard";
 
 const ItemListings = (props) => {
-
-    // const titles = [];
-    // for (let i = 0; i < props.listings.length; i++) {
-    //     titles.push(<h4>{props.listings[i].title}</h4>);
-    // }
-    // console.log(titles);
-
     const itemListings = [];
     for (let i = 0; i < props.listings.length; i++) {
         itemListings.push(
@@ -21,21 +14,11 @@ const ItemListings = (props) => {
         );
     }
     console.log(itemListings);
-
     return (
         <div className="item-listings">
             {itemListings}
         </div>
     )
-      
-
-
-  // return (
-  //     <div>
-
-  //         <ItemCard />
-  //     </div>
-  // )
 };
 
 export default ItemListings;

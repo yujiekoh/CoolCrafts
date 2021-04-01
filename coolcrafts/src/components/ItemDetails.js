@@ -10,14 +10,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 
-
 const ItemDetails = () => {
-  // const [carousel, setCarousel] = useState(
-  //   "https://i.etsystatic.com/28359924/r/il/57444a/2969898698/il_570xN.2969898698_ayvm.jpg"
-  // );
-
-  const [carousel, setCarousel] = useState([]);
-
   const [details, setDetails] = useState({
     images: [],
     shopName: "",
@@ -62,14 +55,6 @@ const ItemDetails = () => {
         listing: res[2].data.results[0]
       });
     });
-
-    // axios.get(imagesURL).then((res) => {
-    //   console.log("ItemDetails.js axios call made");
-    //   console.log(res.data.results);
-    //   setDetails({
-    //     images: res.data.results,
-    //   });
-    // });
   }, []);
 
   return (
@@ -120,12 +105,6 @@ const ItemDetails = () => {
         </Col>
       </Row>
     </Container>
-    //   <div className="item-details">
-    //     <Carousel>
-    //         {allCarousels}
-    //     </Carousel>
-
-    //   </div>
   );
 };
 

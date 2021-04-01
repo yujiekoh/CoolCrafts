@@ -18,23 +18,10 @@ function App() {
     console.log("show more clicked");
     setOffset(offset + 10);
     console.log(offset);
-
-    // toggle between 2 values in a state
   };
 
   const API_KEY = process.env.REACT_APP_API_KEY;
   const numListings = 4;
-
-  // useEffect(() => {
-
-  //   const url = `https://openapi.etsy.com/v2/listings/active?api_key=${API_KEY}&limit=${numListings}&offset=${offset}`;
-
-  //   axios.get(url).then((res) => {
-  //     console.log("App.js axios call made");
-  //     console.log(res.data.results);
-  //     setListings(res.data.results);
-  //   });
-  // }, []);
 
   useEffect(() => {
     const url = `https://openapi.etsy.com/v2/listings/active?api_key=${API_KEY}&limit=${numListings}&offset=${offset}`;

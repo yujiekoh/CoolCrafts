@@ -24,12 +24,6 @@ const CheckoutItem = (props) => {
         newQuantity: parseInt(e.target.value),
         newTotalPrice: parseInt(e.target.value) * props.price
       });
-      
-
-      // setTotalPrice({
-      //   quantity: parseInt(e.target.value),
-      //   price: parseInt(e.target.value) * props.price
-      // });
     };
 
     return (
